@@ -198,18 +198,4 @@ Currently there is very little machinery on most online platforms to identify an
 
 Few companies use AI based models to help identify toxic messages on their platform. Other innovative methods include Instagram's Comment Warning and Feed Post Warning systems which uses AI specifically to get users to pause, reflect, and edit their words when they are about to post something potentially offensive or hurtful. However, task is largely complicated by the fact that messages and  may include images or videos, for which analysis is significantly difficult.
 
-In conclusion, we feel that there is a need to develop better systems to prevent negativity in chatting platforms and social media in general. 
-
-# Ending Notes
-
-## Challenges and Accomplishments
-1. This is our first experience working with technologies like Discord Bots, Google API etc and we are really proud of what we have finally arrived at.
-2. The task of identifying the texts as offensive, finding the big data for training the model proved to be a fairly complicated task. Moreover, for most of us this was our first tryst with NLP engines. Thus configuring a simplistic and suitable model was quite some achievement. 
-3. Data cleaning was another significant problem.
-
-## Experiences Gained
-1. Working with NLP Models.
-2. This was our first experience with Google Cloud APIs, so we learnt quite a lot in that direction.
-3. Handling Discord bots.
-4. This was our first proper hackathon and thus was quite a learning experience.
-5. We learned how to work with "clean" big data effectively, which was a first time experience.
+In conclusion, we feel that there is a need to develop better systems to prevent negativity in chatting platforms and social media in general.
