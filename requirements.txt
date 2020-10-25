@@ -2,3 +2,7 @@ google-api-python-client
 python-dotenv
 discord.py
 googletrans
+nltk
+word2vec
+pandas
+scikit-learn
