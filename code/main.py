@@ -1,4 +1,8 @@
 import os
+import sys
+
+sys.path.insert(1, './SentimentAnalysis/')
+import init
 
 try: 
     from googleapiclient import discovery
