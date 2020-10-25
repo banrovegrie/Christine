@@ -6,6 +6,7 @@ try:
     import discord
     from discord.ext import commands
     from functions import *
+    from translate_text import *
 except:
     os.system('pip3 install google-api-python-client')
     os.system('pip3 install python-dotenv')
@@ -39,7 +40,9 @@ async def talk_it(message):
         return
 
     text = message.content
+    text = translation(text)
     print(text)
+
     analyze_request['comment']['text'] = text
     response = service.comments().analyze(body=analyze_request).execute()
     response = response['attributeScores']
