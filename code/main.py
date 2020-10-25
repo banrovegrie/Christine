@@ -63,6 +63,28 @@ async def talk_it(message):
         msg = msg[:-2]
         msg += "\n```"
         await message.channel.send(msg)
+
+        data = open("user_data.json", "r")
+        try:
+            json_object = json.load(data)
+        except Exception as e:
+            json_object = {}
+            print(e)
+        data.close()
+
+        data = open("user_data.json", "w")
+        # print(user_server in json_object)
+        if not (user_server in json_object.keys()):
+            json_object[user_server] = {}
+        if not (user in json_object[user_server].keys()):
+            json_object[user_server][user] = {}
+        json_object[user_server][user][message_id] = {
+            'message': message.content,
+            'tags': tags,
+            # 'time': message.created_at
+        }
+        json.dump(json_object,data)
+        data.close()
     else:
         msg += "no triggers"
         await message.channel.send(msg)
