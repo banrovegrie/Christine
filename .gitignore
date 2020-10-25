@@ -2,3 +2,4 @@
 rawdata.csv
 ./env/
 env/
+./code/.env
