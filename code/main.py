@@ -39,6 +39,7 @@ async def talk_it(message):
         return
 
     text = message.content
+    print(text)
     analyze_request['comment']['text'] = text
     response = service.comments().analyze(body=analyze_request).execute()
     response = response['attributeScores']
