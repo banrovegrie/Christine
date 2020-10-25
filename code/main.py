@@ -1,8 +1,8 @@
 import os
 import sys
 
-sys.path.insert(1, './SentimentAnalysis/')
 import init
+from init import *
 
 try: 
     from googleapiclient import discovery
@@ -35,6 +35,10 @@ for att in attributes:
 
 print("CONNECTED")
 
+@bot.listen('on_ready')
+async def bruh():
+    init_depression()
+
 @bot.listen('on_message')
 async def talk_it(message):
     # condition to be changed later: made to prevent spamming
@@ -47,6 +51,8 @@ async def talk_it(message):
     text = translation(text)
     print(text)
 
+    depression = depression_scale(text)
+
     analyze_request['comment']['text'] = text
     response = service.comments().analyze(body=analyze_request).execute()
     response = response['attributeScores']
@@ -56,41 +62,19 @@ async def talk_it(message):
     for att in attributes:
         value = response[att]['summaryScore']['value']
         refined_attributes[att] = value
-        value = f"```\n{att}: {value}\n```"
-        msg += value
 
     tags = tagger(refined_attributes)
+    owner =  f"<@!{message.guild.owner_id}> has been informed"
     if len(tags) > 0:
-        msg += "\n```"
         for tag in tags:
             msg += tag + ", "
         msg = msg[:-2]
-        msg += "\n```"
-        await message.channel.send(msg)
+        sendThis = f"{owner} \n > {message.content} \n {message.author.mention}, Your message has been reported {msg}"
+        await message.channel.send(sendThis)
 
-        data = open("user_data.json", "r")
-        try:
-            json_object = json.load(data)
-        except Exception as e:
-            json_object = {}
-            print(e)
-        data.close()
+    if depression < 1:
+        await message.channel.send(f"{owner} has been informed you are sad, pls take care")
 
-        data = open("user_data.json", "w")
-        # print(user_server in json_object)
-        if not (user_server in json_object.keys()):
-            json_object[user_server] = {}
-        if not (user in json_object[user_server].keys()):
-            json_object[user_server][user] = {}
-        json_object[user_server][user][message_id] = {
-            'message': message.content,
-            'tags': tags,
-            # 'time': message.created_at
-        }
-        json.dump(json_object,data)
-        data.close()
-    else:
-        msg += "no triggers"
-        await message.channel.send(msg)
+
 
 bot.run(DISCORD_TOKEN)
