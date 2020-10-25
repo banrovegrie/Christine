@@ -1,4 +1,3 @@
-
 #header files required
 import pandas as pd
 import nltk
@@ -89,7 +88,7 @@ def main():
     X_val = test_features[range(0, vec_size)]
     Y_val = test_features[vec_size]
 
-    LR_model = LogisticRegression()
+    LR_model = LogisticRegression(max_iter=10000)
     LR_model.fit(X_train, Y_train)
 
 def sentence_clean(sentence):

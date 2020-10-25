@@ -38,6 +38,7 @@ print("CONNECTED")
 @bot.listen('on_ready')
 async def bruh():
     init_depression()
+    print("Started")
 
 @bot.listen('on_message')
 async def talk_it(message):
@@ -49,7 +50,6 @@ async def talk_it(message):
 
     text = message.content
     text = translation(text)
-    print(text)
 
     depression = depression_scale(text)
 

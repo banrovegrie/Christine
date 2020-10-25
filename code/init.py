@@ -22,6 +22,10 @@ from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler
 
+vec_size = 100
+w2v_model = word2vec.load('cleaned.bin')
+LR_model = None
+
 def lemmatize_sentence(tweet_tokens, stop_words = ()):
     lemmatizer = WordNetLemmatizer()
     cleaned_tokens = []
@@ -45,9 +49,6 @@ def init_depression():
     text = df.TEXT.tolist()
     sentiment = df.SENTIMENT.tolist()
 
-    # Constants used:
-    vec_size = 100
-
     # Run these if you want to train the update the model based on new CLEANED data
 
     # my_filtered_csv = pd.read_csv('./betterdata.csv', usecols=['SENTIMENT', 'TEXT'])
@@ -56,7 +57,6 @@ def init_depression():
     # word2vec.word2clusters('cleaned_data.csv', 'cleaned-clusters.txt', 100, verbose=True)
 
 
-    w2v_model = word2vec.load('cleaned.bin')
 
 
     cleaned_values = []
@@ -93,7 +93,8 @@ def init_depression():
     X_val = test_features[range(0, vec_size)]
     Y_val = test_features[vec_size]
 
-    LR_model = LogisticRegression()
+    global LR_model
+    LR_model = LogisticRegression(max_iter=10000)
     LR_model.fit(X_train, Y_train)
 
 def sentence_clean(sentence):
@@ -130,9 +131,11 @@ def depression_scale(sentence):
         num_words += 1
     if num_words == 0:
         return 2
-    
+
+    global LR_model    
     for ind, val in enumerate(word_vector):
         word_vector[ind] = val / num_words
     y_result_probs = 4 * LR_model.predict_proba([word_vector])[0][1]
+    print(y_result_probs)
     return y_result_probs
 
