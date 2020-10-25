@@ -3,6 +3,7 @@ try:
     from googletrans import Translator
 except:
     os.system('pip3 install googletrans')
+    from googletrans import Translator
 
 def translation(text):
     translator = Translator()
