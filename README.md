@@ -33,15 +33,11 @@ To combat this issue, we decided to develop Christine, named after the famous fe
 
 In short, this is our attempt to make a singular bot to stop **cyber-bullying, sexual-harassment** as well as provide a perfect tool for administrators to help out their friends and colleagues who might be **suffering with the painful gout of depression.**
 
-<img src="https://cdn.discordapp.com/attachments/769945683511214080/769951413018689546/unknown.png">
-
 ### About Discord
 
 Among the several instant messaging platforms available, **Discord** is one of the most popular ones. Because of its several innovative features like server-channel systems, awesome call quality, permission management and tools to integrate bots, Discord has become a major platform for people to collaborate, converse and share ideas.
 
 **Why we chose discord?**
-
-<img src="https://cdn.discordapp.com/attachments/769945683511214080/769945698455650314/unknown.png">
 
 As is evident from the above **active user statistics** of discord, we can deduce that as the application is exponentially gaining users.
 
